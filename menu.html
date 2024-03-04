@@ -83,8 +83,9 @@
         }
 
         function payViaUPI() {
-            const upiId = '9392659502@paytm';
-            window.open(`https://paytm.com/${upiId}`);
+                 const upiId = '9392659502@paytm';
+                 const appUrl = `paytm://upi/${upiId}`;
+                 window.location.href = appUrl;
         }
     </script>
 </body>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Welcome to our restaurant!</h1>
+        <label for="name">Please enter your name:</label>
+        <input type="text" id="name">
+        <button onclick="displayMenu()">Submit</button>
+    </div>
+
+    <script>
+        const menu = {
+            "1": {"name": "Mosquito Fry", "price": 8.99},
+            "2": {"name": "Elakala Pulusu", "price": 14.99},
+            "3": {"name": "Cigarette Chat", "price": 6.99},
+            "4": {"name": "Lizard 65", "price": 12.99},
+            "5": {"name": "Ant Pakoda", "price": 9.99},
+            "6": {"name": "Cockroach Butter Masala", "price": 13.99},
+            "7": {"name": "Tandoori Cockroach", "price": 15.99},
+            "8": {"name": "Chilli Rat", "price": 11.99},
+            "9": {"name": "Wild Pig Curry", "price": 16.99},
+            "10": {"name": "Earth Worm Soup", "price": 7.99},
+            "11": {"name": "Grasshopper Manchurian", "price": 10.99},
+            "12": {"name": "Snake Shake", "price": 8.99},
+            "13": {"name": "Scorpion 555", "price": 17.99},
+            "14": {"name": "Mia Khalifa Chicken", "price": 18.99},
+            "15": {"name": "Sunnyleone Soup (Chef Special)", "price": 19.99},
+            "16": {"name": "Nawabi Rat Curry", "price": 14.99},
+            "17": {"name": "Mughlai Lizard", "price": 16.99},
+            "18": {"name": "Grilled Lizard", "price": 15.99},
+            "19": {"name": "Mosquito Rolls", "price": 9.99},
+            "20": {"name": "Snake Majestic", "price": 16.99},
+            "21": {"name": "Chef's Special Meghana Maggie", "price": 11.99},
+            "22": {"name": "All Mix Insects Biryani", "price": 20.99},
+            "23": {"name": "Lizard Biryani", "price": 18.99},
+            "24": {"name": "Rat Biryani", "price": 17.99},
+            "25": {"name": "All Mix Non-Veg Biryani", "price": 22.99}
+        };
+
+        let selectedItems = {};
+        let userName = '';
+
+        function displayMenu() {
+            userName = document.getElementById('name').value;
+            document.getElementById('app').innerHTML = `
+                <h1>Hello, ${userName}!</h1>
+                <h2>Here's our menu:</h2>
+                <div id="menuItems">
+                    ${Object.entries(menu).map(([key, item]) => `
+                        <div>
+                            <input type="checkbox" id="item${key}" name="item${key}" value="${item.name}" onclick="selectItem('${key}', '${item.name}', ${item.price})">
+                            <label for="item${key}">${item.name} - $${item.price.toFixed(2)}</label>
+                        </div>
+                    `).join('')}
+                </div>
+                <button onclick="placeOrder()">Place Order</button>
+            `;
+        }
+
+        function selectItem(id, name, price) {
+            if (document.getElementById(`item${id}`).checked) {
+                selectedItems[id] = {name: name, price: price};
+            } else {
+                delete selectedItems[id];
+            }
+        }
+
+        function placeOrder() {
+            const totalBill = Object.values(selectedItems).reduce((acc, item) => acc + item.price, 0);
+            let message = `<h2>Your total bill is: $${totalBill.toFixed(2)}</h2>`;
+            message += `<h3>Thank you for dining with us!</h3>`;
+            message += `<h4>Do you have any message for us?</h4>`;
+            message += `<textarea id="message" rows="4" cols="50"></textarea>`;
+            message += `<button onclick="payViaUPI()">Pay via UPI</button>`;
+            message += `<p>Visit again soon!</p>`;
+            document.getElementById('app').innerHTML = message;
+        }
+
+        function payViaUPI() {
+            const upiId = '9392659502@paytm';
+            window.open(`https://paytm.com/${upiId}`);
+        }
+    </script>
+</body>
+</html>

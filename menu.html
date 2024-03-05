@@ -71,17 +71,19 @@
                 delete selectedItems[id];
             }
         }
+   
+ function placeOrder() {
+    console.log("Place Order button clicked"); // Debugging statement
+    const totalBill = Object.values(selectedItems).reduce((acc, item) => acc + item.price, 0);
+    let message = `<h2>Your total bill is: ${totalBill.toFixed(2)}</h2>`;
+    message += `<h3>Thank you for dining with us!</h3>`;
+    message += `<h4>Do you have any message for us?</h4>`;
+    message += `<textarea id="message" rows="4" cols="50"></textarea>`;
+    message += `<button onclick="payViaUPI()">Pay via UPI</button>`;
+    message += `<p>Visit again soon!</p>`;
+    document.getElementById('app').innerHTML = message;
+}
 
-        function placeOrder() {
-            const totalBill = Object.values(selectedItems).reduce((acc, item) => acc + item.price, 0);
-            let message = `<h2>Your total bill is: ${totalBill.toFixed(2)}</h2>`;
-            message += `<h3>Thank you for dining with us!</h3>`;
-            message += `<h4>Do you have any message for us?</h4>`;
-            message += `<textarea id="message" rows="4" cols="50"></textarea>`;
-            message += `<button onclick="payViaUPI()">Pay via UPI</button>`;
-            message += `<p>Visit again soon!</p>`;
-            document.getElementById('app').innerHTML = message;
-        }
 
   function payViaUPI() {
     const upiId = '7989654650@ybl';

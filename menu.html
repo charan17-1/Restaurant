@@ -54,7 +54,7 @@
                 <div id="menuItems">
                     ${Object.entries(menu).map(([key, item]) => `
                         <div>
-                            <input type="checkbox" id="item${key}" name="item${key}" value="${item.name}" onclick="selectItem('${key}', '${item.name}', ${item.price})">
+                            <input type="checkbox" id="item${key}" name="item${key}" value="${item.name}" onclick="selectItem('${key}', '${item.name}', '${item.price}')">
                             <label for="item${key}">${item.name} - $${item.price.toFixed(2)}</label>
                         </div>
                     `).join('')}

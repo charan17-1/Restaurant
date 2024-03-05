@@ -83,13 +83,15 @@
             document.getElementById('app').innerHTML = message;
         }
 
-    function payViaUPI() {
+  function payViaUPI() {
     const upiId = '7989654650@ybl';
     const amount = calculateTotalBill(); // Call a function to calculate the total bill
     const description = 'payment-description';
     const appUrl = `phonepe://pay?pa=${upiId}&pn=MerchantName&mc=MerchantCode&tr=TransactionID&tn=${description}&am=${amount}&cu=INR`;
+    console.log(appUrl); // Log the appUrl
     window.location.href = appUrl;
 }
+
 
 function calculateTotalBill() {
     return Object.values(selectedItems).reduce((acc, item) => acc + item.price, 0);

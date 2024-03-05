@@ -72,8 +72,7 @@
             }
         }
    
- function placeOrder() {
-    console.log("Place Order button clicked"); // Debugging statement
+ function placeOrder() 
     const totalBill = Object.values(selectedItems).reduce((acc, item) => acc + item.price, 0);
     let message = `<h2>Your total bill is: ${totalBill.toFixed(2)}</h2>`;
     message += `<h3>Thank you for dining with us!</h3>`;
@@ -90,7 +89,6 @@
     const amount = calculateTotalBill(); // Call a function to calculate the total bill
     const description = 'payment-description';
     const appUrl = `phonepe://pay?pa=${upiId}&pn=MerchantName&mc=MerchantCode&tr=TransactionID&tn=${description}&am=${amount}&cu=INR`;
-    console.log(appUrl); // Log the appUrl
     window.location.href = appUrl;
 }
 

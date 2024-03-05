@@ -89,11 +89,6 @@
     const appUrl = `phonepe://pay?pa=${upiId}&pn=MerchantName&mc=MerchantCode&tr=TransactionID&tn=${description}&am=${amount}&cu=INR`;
     window.location.href = appUrl;
 }
-    function calculateTotalBill() {
-    // Function to calculate the total bill amount
-    const totalBill = Object.values(selectedItems).reduce((acc, item) => acc + item.price, 0);
-    return totalBill.toFixed(2); // Return the total bill amount as a string
-}
 
     </script>
 </body>
